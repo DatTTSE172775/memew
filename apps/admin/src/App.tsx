@@ -1,34 +1,42 @@
-import { useState } from "react";
+import { Button } from "./components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
+import { Input } from "./components/ui/input";
+import { Label } from "./components/ui/label";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full mx-4">
-        <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
-          Admin Dashboard
-        </h1>
-
-        <div className="text-center">
-          <p className="text-gray-600 mb-4">
-            Click vào nút để kiểm tra Tailwind CSS hoạt động:
-          </p>
-
-          <button
-            onClick={() => setCount((count) => count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-          >
-            Đã click {count} lần
-          </button>
-
-          <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-            <p className="text-sm text-gray-700">
-              Nếu bạn thấy styling này đẹp, Tailwind CSS đã hoạt động! 🎉
-            </p>
+    <div className="flex min-h-svh flex-col items-center justify-center p-4 bg-gray-50">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle className="text-center">
+            Test Shadcn UI Components
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="test-input">Test Input</Label>
+            <Input id="test-input" placeholder="Nhập gì đó để test..." />
           </div>
-        </div>
-      </div>
+
+          <div className="flex gap-2">
+            <Button variant="default">Primary Button</Button>
+            <Button variant="outline">Outline Button</Button>
+          </div>
+
+          <div className="flex gap-2">
+            <Button variant="secondary" size="sm">
+              Small Button
+            </Button>
+            <Button variant="destructive" size="lg">
+              Destructive Button
+            </Button>
+          </div>
+
+          <Button className="w-full" variant="ghost">
+            Full Width Ghost Button
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }
