@@ -1,74 +1,141 @@
-import React from 'react';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
-    <footer className="w-full h-[318px] bg-gray-900 text-white">
-      <div className="container mx-auto px-4 h-full">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 h-full py-12">
-          {/* Company info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-6">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mr-3">
-                <span className="text-xl font-bold text-gray-800">🐱</span>
+    <footer className="w-full bg-[#FFE8C5] text-black">
+      <div className="container mx-auto px-4 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Hỗ trợ</h4>
+              <ul className="space-y-3 text-[17px]">
+                <li>
+                  <Link href="#" className="hover:underline">
+                    Vận chuyển & giao hàng
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline">
+                    Đổi trả hàng
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline">
+                    Đơn hàng của bạn
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline">
+                    Tài khoản
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline">
+                    FAQs
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Về chúng tôi</h4>
+              <ul className="space-y-3 text-[17px]">
+                <li>
+                  <Link href="/about" className="hover:underline">
+                    Giới Thiệu
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Chính Sách</h4>
+              <ul className="space-y-3 text-[17px]">
+                <li>
+                  <Link href="#" className="hover:underline">
+                    Chính sách bảo mật
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:underline">
+                    Chính sách đổi trả
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Liên hệ</h4>
+              <ul className="space-y-3 text-[17px]">
+                <li>0559001543</li>
+                <li>Mewmemes1@gmail.com</li>
+              </ul>
+              <div className="mt-6 flex items-center space-x-4 text-black/80">
+                <Link
+                  href="#"
+                  aria-label="Facebook"
+                  className="hover:opacity-80"
+                >
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 4.99 3.66 9.13 8.44 9.94v-7.03H7.9V12.06h2.54V9.86c0-2.5 1.5-3.88 3.79-3.88 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.85h2.78l-.44 2.91h-2.34V22c4.78-.81 8.44-4.95 8.44-9.94z" />
+                  </svg>
+                </Link>
+                <Link
+                  href="#"
+                  aria-label="YouTube"
+                  className="hover:opacity-80"
+                >
+                  <svg
+                    width="36"
+                    height="26"
+                    viewBox="0 0 28 20"
+                    fill="currentColor"
+                  >
+                    <path d="M27.5 3.1a3.5 3.5 0 00-2.47-2.47C22.73 0 14 0 14 0S5.27 0 3 0.63A3.5 3.5 0 00.53 3.1C0 5.37 0 10 0 10s0 4.63.53 6.9a3.5 3.5 0 002.47 2.47C5.27 20 14 20 14 20s8.73 0 11-0.63a3.5 3.5 0 002.47-2.47C28 14.63 28 10 28 10s0-4.63-.5-6.9zM11 14.5V5.5l7.5 4.5L11 14.5z" />
+                  </svg>
+                </Link>
+                <Link href="#" aria-label="TikTok" className="hover:opacity-80">
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M16 8.04a6.5 6.5 0 01-2-4.78V3h-3.2v11.1a2.36 2.36 0 11-2-2.32V8.4a5.56 5.56 0 00-4 5.32 5.6 5.6 0 0011.2 0v-5.7a9.3 9.3 0 004 1v-3a6.9 6.9 0 01-4-1z" />
+                  </svg>
+                </Link>
               </div>
-              <h3 className="text-2xl font-bold">MEMEW</h3>
-            </div>
-            <p className="text-gray-300 mb-4 max-w-md">
-              Nền tảng chia sẻ và khám phá những khoảnh khắc đáng yêu, hài hước và ấm áp trong cuộc sống.
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <span className="sr-only">Facebook</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <span className="sr-only">Twitter</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <span className="sr-only">Instagram</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.418-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.928.875 1.418 2.026 1.418 3.323s-.49 2.448-1.418 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.718-1.297c-.875.807-2.026 1.297-3.323 1.297s-2.448-.49-3.323-1.297c-.928-.875-1.418-2.026-1.418-3.323s.49-2.448 1.418-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.928.875 1.418 2.026 1.418 3.323s-.49 2.448-1.418 3.323z"/>
-                </svg>
-              </a>
             </div>
           </div>
-          
-          {/* Quick links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Liên kết nhanh</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Trang chủ</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Về chúng tôi</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Dịch vụ</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Liên hệ</a></li>
-            </ul>
-          </div>
-          
-          {/* Contact info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Liên hệ</h4>
-            <ul className="space-y-2 text-gray-300">
-              <li>Email: info@memew.com</li>
-              <li>Điện thoại: +84 123 456 789</li>
-              <li>Địa chỉ: Hà Nội, Việt Nam</li>
-            </ul>
-          </div>
-        </div>
-        
-        {/* Bottom bar */}
-        <div className="border-t border-gray-800 pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 MEMEW. Tất cả quyền được bảo lưu.
+
+          <div className="lg:col-span-5 flex flex-col items-start">
+            <div className="flex items-center gap-4 mb-2">
+              <Image
+                src="/logo_footer.svg"
+                alt="MEMEW logo"
+                width={127 * 3}
+                height={132 * 3}
+                priority
+              />
+            </div>
+            <p className="text-xl md:text-2xl font-semibold mb-4 text-left">
+              Mew tung chiêu, triệu tim yêu! Đăng ký ngay 👇
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Chính sách bảo mật</a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Điều khoản sử dụng</a>
+            <div className="w-full max-w-xl flex flex-col items-start gap-3">
+              <Input
+                type="email"
+                placeholder="Enter email address..."
+                className="w-full h-14 rounded-full bg-white placeholder-black/50"
+              />
+              <Button className="h-12 px-6 rounded-full bg-black text-white text-base font-semibold hover:opacity-90">
+                Đăng Ký
+              </Button>
             </div>
           </div>
         </div>
