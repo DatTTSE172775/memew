@@ -1,120 +1,259 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* ========= THEME ALIASES (Tailwind v4 @theme) =========
+   LƯU Ý: phải bọc bằng hsl(var(--...)) để Tailwind hiểu là color hợp lệ.
+*/
+@theme {
+  /* Semantic colors */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 
-@theme inline {
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-hover: hsl(var(--primary-hover));
+  --color-primary-light: hsl(var(--primary-light));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-alt: hsl(var(--secondary-alt));
+  --color-secondary-light: hsl(var(--secondary-light));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* semantic phụ */
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-info: hsl(var(--info));
+
+  /* radii (dựa trên --radius gốc) */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* shadow/easing cơ bản (tuỳ chọn) */
+  --shadow-1: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+  --shadow-2: 0 8px 24px -8px rgb(0 0 0 / 0.25);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ========= LIGHT THEME (MEMEW) ========= */
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Backgrounds & text */
+  --background: 0 0% 100%; /* #FFFFFF */
+  --foreground: 0 0% 10%; /* #1A1A1A */
+
+  --card: 210 17% 95%; /* #F3F4F6 */
+  --card-foreground: 0 0% 10%;
+
+  --popover: 210 17% 95%;
+  --popover-foreground: 0 0% 10%;
+
+  /* Primary */
+  --primary: 24 100% 65%; /* #FF914D */
+  --primary-foreground: 0 0% 98%; /* #FAFAFA */
+  --primary-hover: 24 100% 58%; /* #FF7A29 */
+  --primary-light: 24 100% 90%; /* #FFE1CC (approx) */
+
+  /* Secondary */
+  --secondary: 277 87% 36%; /* #6A0DAD */
+  --secondary-foreground: 0 0% 98%;
+  --secondary-alt: 274 100% 66%; /* #B84DFF */
+  --secondary-light: 270 100% 93%; /* #EEDBFF */
+
+  /* Muted/Accent */
+  --muted: 210 17% 95%; /* neutral-100 */
+  --muted-foreground: 215 16% 47%; /* #4B5563 */
+  --accent: 270 100% 93%; /* secondary-light */
+  --accent-foreground: 0 0% 10%;
+
+  /* Destructive */
+  --destructive: 0 84% 63%; /* #EF4444 */
+  --destructive-foreground: 0 0% 98%;
+
+  /* Controls */
+  --border: 214 15% 83%; /* #D1D5DB */
+  --input: 214 15% 83%;
+  --ring: 24 100% 65%;
+
+  /* Semantic phụ */
+  --success: 158 64% 41%; /* #10B981 */
+  --warning: 36 92% 52%; /* #F59E0B */
+  --info: 217 91% 60%; /* #3B82F6 */
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+/* ========= DARK THEME (MEMEW) ========= */
+[data-theme="dark"] {
+  --background: 220 27% 10%; /* #111827 */
+  --foreground: 0 0% 96%; /* #F5F5F5 */
+
+  --card: 215 28% 17%; /* #1F2937 */
+  --card-foreground: 0 0% 96%;
+
+  --popover: 215 28% 17%;
+  --popover-foreground: 0 0% 96%;
+
+  --primary: 24 100% 65%;
+  --primary-foreground: 220 27% 10%; /* #111827 */
+  --primary-hover: 24 100% 58%;
+  --primary-light: 24 28% 16%; /* #332218 approx */
+
+  --secondary: 274 100% 66%; /* #B84DFF */
+  --secondary-foreground: 220 27% 10%;
+  --secondary-alt: 277 87% 36%; /* #6A0DAD */
+  --secondary-light: 286 38% 16%; /* #2B173A */
+
+  --muted: 215 28% 17%;
+  --muted-foreground: 214 15% 83%; /* #D1D5DB */
+
+  --accent: 286 38% 16%;
+  --accent-foreground: 0 0% 96%;
+
+  --destructive: 0 89% 74%; /* #F87171 */
+  --destructive-foreground: 220 27% 10%;
+
+  --border: 215 16% 34%; /* #4B5563 */
+  --input: 215 16% 34%;
+  --ring: 24 100% 65%;
+
+  --success: 158 59% 56%; /* #34D399 */
+  --warning: 42 96% 59%; /* #FBBF24 */
+  --info: 214 88% 70%; /* #60A5FA */
 }
 
+/* ========= BASE LAYER ========= */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ========= COMPONENT UTILITIES (tối thiểu, optional) ========= */
+@layer components {
+  /* Button states khớp token MEMEW */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    box-shadow: var(--shadow-1);
+  }
+  .btn-primary:hover {
+    background: var(--color-primary-hover);
+  }
+  .btn-primary:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px
+      color-mix(in oklab, var(--color-primary) 25%, transparent);
+  }
+
+  .btn-secondary {
+    background: var(--color-secondary);
+    color: var(--color-secondary-foreground);
+  }
+  .btn-outline {
+    @apply border;
+    border-color: var(--color-border);
+    color: var(--color-foreground);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: var(--color-muted);
+  }
+
+  .btn-destructive {
+    background: var(--color-destructive);
+    color: var(--color-destructive-foreground);
+  }
+
+  /* Input cơ bản */
+  .form-control {
+    @apply w-full rounded-md px-3 py-2;
+    background: var(--color-card);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-input);
+  }
+  .form-control::placeholder {
+    color: var(--color-muted-foreground);
+  }
+  .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-ring);
+  }
+
+  /* Alert & Badge theo semantic */
+  .alert {
+    @apply rounded-md border p-4;
+    background: color-mix(
+      in oklab,
+      var(--color-foreground) 3%,
+      var(--color-background)
+    );
+    border-color: var(--color-border);
+  }
+  .alert-error {
+    border-color: color-mix(
+      in oklab,
+      var(--color-destructive) 35%,
+      transparent
+    );
+    background: color-mix(
+      in oklab,
+      var(--color-destructive) 8%,
+      var(--color-background)
+    );
+  }
+  .alert-success {
+    border-color: color-mix(in oklab, var(--color-success) 35%, transparent);
+    background: color-mix(
+      in oklab,
+      var(--color-success) 8%,
+      var(--color-background)
+    );
+  }
+  .alert-info {
+    border-color: color-mix(in oklab, var(--color-info) 35%, transparent);
+    background: color-mix(
+      in oklab,
+      var(--color-info) 8%,
+      var(--color-background)
+    );
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+  .badge-success {
+    background: var(--color-success);
+    color: white;
+  }
+  .badge-warning {
+    background: var(--color-warning);
+    color: black;
+  }
+  .badge-info {
+    background: var(--color-info);
+    color: white;
   }
 }
