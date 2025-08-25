@@ -1,135 +1,275 @@
-# Turborepo starter
+# MEMEW - Monorepo với Theme System
 
-This Turborepo starter is maintained by the Turborepo core team.
+Dự án monorepo sử dụng Turborepo với hệ màu MEMEW, hỗ trợ cả Next.js và Vite, sử dụng shadcn UI components và Tailwind CSS v4.
 
-## Using this example
+## 🎨 Theme System
 
-Run the following command:
+### Hệ màu MEMEW
 
-```sh
-npx create-turbo@latest
+- **Primary**: Orange (#FF914D) - Màu chủ đạo
+- **Secondary**: Purple (#6A0DAD) - Màu phụ
+- **Accent**: Light Purple (#EEDBFF) - Màu nhấn
+- **Semantic**: Success, Warning, Info, Destructive
+- **Dark Mode**: Hỗ trợ đầy đủ với `[data-theme="dark"]`
+
+### Tính năng Theme
+
+- ✅ CSS Variables với HSL format
+- ✅ Tailwind CSS v4 integration
+- ✅ Dark/Light mode toggle
+- ✅ Responsive design
+- ✅ Custom component utilities
+
+## 🏗️ Cấu trúc Dự án
+
+```
+memew/
+├── apps/
+│   ├── web/                 # Next.js App (App Router)
+│   │   ├── src/app/         # Pages & Layouts
+│   │   ├── src/components/  # UI Components
+│   │   └── globals.css      # MEMEW Theme CSS
+│   └── admin/               # Vite React App
+│       ├── src/             # Source code
+│       └── index.css        # MEMEW Theme CSS
+├── packages/
+│   ├── eslint-config/       # ESLint configurations
+│   └── typescript-config/   # TypeScript configs
+└── turbo.json               # Turborepo configuration
 ```
 
-## What's inside?
+## 🚀 Cài đặt & Chạy
 
-This Turborepo includes the following packages/apps:
+### Prerequisites
 
-### Apps and Packages
+- Node.js 18+
+- npm
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Cài đặt dependencies
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+```bash
+# Root level
+npm install
 
-### Utilities
+# Hoặc từng app riêng
+cd apps/web && npm install
+cd apps/admin && npm install
+```
 
-This Turborepo has some additional tools already setup for you:
+### Chạy Development
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+#### Chạy tất cả apps
+
+````bash
+# Root level
+npm run dev
+
+#### Chạy app cụ thể
+
+```bash
+# Web app (Next.js)
+npm run dev --filter=web
+
+# Admin app (Vite)
+npm run dev --filter=admin
 
 ### Build
 
-To build all apps and packages, run the following command:
+```bash
+# Build tất cả
+npm build
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+# Build app cụ thể
+npm build --filter=web
+npm build --filter=admin
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## 🌐 Truy cập Apps
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+### Web App (Next.js)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+- **URL**: `http://localhost:3000`
 
-### Develop
+### Admin App (Vite)
 
-To develop all apps and packages, run the following command:
+- **URL**: `http://localhost:5173`
 
-```
-cd my-turborepo
+## 🎯 Components & Utilities
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+### shadcn UI Components
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+- **Buttons**: Primary, Secondary, Destructive, Outline, Ghost
+- **Forms**: Input, Label, Card
+- **Feedback**: Alert, Badge
+- **Layout**: Card, CardHeader, CardContent, CardTitle
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Custom Utilities (MEMEW Theme)
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+```css
+/* Button utilities */
+.btn .btn-primary .btn-secondary .btn-outline .btn-destructive
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+/* Form utilities */
+.form-control
+
+/* Alert utilities */
+.alert .alert-error .alert-success .alert-info
+
+/* Badge utilities */
+.badge .badge-success .badge-warning .badge-info
 ```
 
-### Remote Caching
+## 🎨 Theme Configuration
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### CSS Variables Structure
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+```css
+@theme {
+  --color-primary: hsl(var(--primary));
+  --color-secondary: hsl(var(--secondary));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  /* ... */
+}
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+:root {
+  --primary: 24 100% 65%; /* #FF914D */
+  --secondary: 277 87% 36%; /* #6A0DAD */
+  --background: 0 0% 100%; /* #FFFFFF */
+  --foreground: 0 0% 10%; /* #1A1A1A */
+}
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+[data-theme="dark"] {
+  --background: 220 27% 10%; /* #111827 */
+  --foreground: 0 0% 96%; /* #F5F5F5 */
+  /* ... */
+}
 ```
 
-## Useful Links
+### Sử dụng trong Components
 
-Learn more about the power of Turborepo:
+```tsx
+// Tailwind utilities
+<div className="bg-primary text-primary-foreground">
+  Primary Background
+</div>
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+// Custom utilities
+<button className="btn btn-primary">Custom Button</button>
+<input className="form-control" placeholder="Input" />
+```
+
+## 🔧 Development
+
+### Cấu hình Tailwind CSS v4
+
+- **Config-in-CSS**: Sử dụng `@theme` thay vì `tailwind.config.js`
+- **CSS Variables**: Tất cả colors được định nghĩa qua CSS variables
+- **Dark Mode**: `[data-theme="dark"]` attribute
+
+### Cấu hình Turborepo
+
+- **Caching**: Local và remote caching
+- **Parallel builds**: Build nhiều apps cùng lúc
+- **Dependencies**: Quản lý dependencies giữa packages
+
+### Scripts có sẵn
+
+```json
+{
+  "dev": "turbo dev",
+  "build": "turbo build",
+  "lint": "turbo lint",
+  "clean": "turbo clean"
+}
+```
+
+## 📱 Responsive Design
+
+### Breakpoints
+
+- **Mobile**: `< 768px`
+- **Tablet**: `768px - 1024px`
+- **Desktop**: `> 1024px`
+
+### Grid System
+
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {/* Responsive grid */}
+</div>
+```
+
+## 🚀 Deployment
+
+### Web App (Next.js)
+
+```bash
+cd apps/web
+npm build
+npm start
+```
+
+### Admin App (Vite)
+
+```bash
+cd apps/admin
+npm build
+npm preview
+```
+
+### Environment Variables
+
+```bash
+# Web app
+cp apps/web/.env.example apps/web/.env.local
+
+# Admin app
+cp apps/admin/.env.example apps/admin/.env.local
+```
+
+## 🤝 Contributing
+
+### Code Style
+
+- **TypeScript**: Strict mode enabled
+- **ESLint**: Config từ `packages/eslint-config`
+- **Prettier**: Code formatting tự động
+
+### Commit Convention
+
+```bash
+feat: add new theme component
+fix: resolve dark mode toggle issue
+docs: update README with theme info
+style: format CSS variables
+```
+
+## 📚 Resources
+
+### Documentation
+
+- [Turborepo Docs](https://turborepo.com/docs)
+- [Next.js Docs](https://nextjs.org/docs)
+- [Vite Docs](https://vitejs.dev/guide)
+- [Tailwind CSS v4](https://tailwindcss.com/docs)
+- [shadcn/ui](https://ui.shadcn.com)
+
+### Theme Colors Reference
+
+- **Primary**: `#FF914D` (Orange)
+- **Secondary**: `#6A0DAD` (Purple)
+- **Accent**: `#EEDBFF` (Light Purple)
+- **Success**: `#10B981` (Green)
+- **Warning**: `#F59E0B` (Yellow)
+- **Info**: `#3B82F6` (Blue)
+- **Destructive**: `#EF4444` (Red)
+
+## 📄 License
+
+MIT License - Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
+
+---
+
+**MEMEW Theme System** - Hệ màu nhất quán cho toàn bộ monorepo 🎨✨
+````
