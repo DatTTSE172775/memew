@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,8 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search, User, Heart, ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const categories = [
     "NEW",
     "ÁO THUN",
@@ -27,34 +42,51 @@ export default function Header() {
 
   return (
     <header
-      className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen h-[220px] md:h-[151px] lg:h-[302px] overflow-hidden"
+      className={`sticky top-0 z-50 w-full overflow-hidden transition-all duration-300 ${
+        isScrolled
+          ? "h-[120px] md:h-[100px] lg:h-[180px] shadow-lg backdrop-blur-md bg-opacity-95"
+          : "h-[220px] md:h-[151px] lg:h-[302px]"
+      }`}
       style={{
         backgroundImage: "url('/banner.svg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
+        backgroundColor: isScrolled
+          ? "rgba(255, 232, 197, 0.95)"
+          : "transparent",
       }}
     >
-      <div className="relative h-full w-full md:scale-50 lg:scale-100 origin-top">
+      <div
+        className={`relative h-full w-full transition-all duration-300 ${
+          isScrolled ? "md:scale-75 lg:scale-85" : "md:scale-50 lg:scale-100"
+        } origin-top`}
+      >
         {/* Logo lớn trên banner (trái) */}
         <Link
           href="/"
           aria-label="Về trang chủ"
-          className="absolute top-6 md:top-16 left-4 md:left-16 z-10"
+          className="absolute top-6 md:top-10 left-4 md:left-16 z-10 transition-all duration-300"
         >
           <Image
             src="/logo_memew.svg"
             alt="MEMEW logo"
             width={256}
             height={128}
-            className="select-none w-40 md:w-56 h-auto"
+            className={`select-none transition-all duration-300 ${
+              isScrolled ? "w-32 md:w-40 h-auto" : "w-40 md:w-56 h-auto"
+            }`}
             draggable={false}
             priority
           />
         </Link>
 
         {/* Topbar rộng rãi: Search + actions */}
-        <div className="absolute top-4 md:top-6 inset-x-0 z-10">
+        <div
+          className={`absolute transition-all duration-300 ${
+            isScrolled ? "top-2 md:top-3" : "top-4 md:top-6"
+          } inset-x-0 z-10`}
+        >
           <div className="mx-auto max-w-none px-4 md:px-6">
             <div className="flex items-center justify-between md:justify-end gap-3 md:gap-4">
               {/* Ô tìm kiếm lớn */}
@@ -185,9 +217,19 @@ export default function Header() {
         </div>
 
         {/* Navigation sản phẩm: Link + button, đồng nhất màu sắc theo theme */}
-        <section className="absolute inset-x-0 bottom-3 md:bottom-6 z-20">
+        <section
+          className={`absolute inset-x-0 transition-all duration-300 ${
+            isScrolled ? "bottom-1 md:bottom-2" : "bottom-3 md:bottom-6"
+          } z-20`}
+        >
           <section className="w-full px-4 md:px-10">
-            <div className="flex items-center md:justify-center gap-3 md:gap-6 lg:gap-8 md:pl-[260px] lg:pl-[350px] overflow-x-auto no-scrollbar [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+            <div
+              className={`flex items-center md:justify-center gap-3 md:gap-6 lg:gap-8 md:pl-[260px] lg:pl-[350px] overflow-x-auto no-scrollbar [-ms-overflow-style:'none'] [scrollbar-width:'none'] transition-all duration-300 ${
+                isScrolled
+                  ? "md:pl-[200px] lg:pl-[280px]"
+                  : "md:pl-[260px] lg:pl-[350px]"
+              }`}
+            >
               {categories.map((label, idx) => (
                 <Button
                   asChild
