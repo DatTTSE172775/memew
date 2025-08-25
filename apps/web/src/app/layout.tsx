@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import MainLayout from "@/components/layout/main-layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MEMEW - Next.js App",
-  description: "MEMEW theme with shadcn UI components",
+  title: "MEMEW",
+  description: "MEMEW web for customer to view and buy",
+  icons: {
+    icon: "/logo_memew.svg",
+    shortcut: "/logo_memew.svg",
+    apple: "/logo_memew.svg",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +34,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <MainLayout>{children}</MainLayout>
+        </ThemeProvider>
       </body>
     </html>
   );
