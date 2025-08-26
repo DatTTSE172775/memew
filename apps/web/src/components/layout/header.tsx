@@ -38,7 +38,7 @@ export default function Header() {
   };
 
   // Tạm thời mock trạng thái đăng nhập; có thể thay bằng data thật từ auth
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <header
