@@ -38,14 +38,12 @@ export default function Header() {
   };
 
   // Tạm thời mock trạng thái đăng nhập; có thể thay bằng data thật từ auth
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full overflow-hidden transition-all duration-300 ${
-        isScrolled
-          ? "h-[120px] md:h-[100px] lg:h-[180px] shadow-lg backdrop-blur-md bg-opacity-95"
-          : "h-[220px] md:h-[151px] lg:h-[302px]"
+      className={`sticky top-0 z-50 w-full overflow-hidden transition-all duration-300 h-[220px] md:h-[151px] lg:h-[302px] ${
+        isScrolled ? "shadow-lg backdrop-blur-md bg-opacity-95" : ""
       }`}
       style={{
         backgroundImage: "url('/banner.svg')",
@@ -57,36 +55,26 @@ export default function Header() {
           : "transparent",
       }}
     >
-      <div
-        className={`relative h-full w-full transition-all duration-300 ${
-          isScrolled ? "md:scale-75 lg:scale-85" : "md:scale-50 lg:scale-100"
-        } origin-top`}
-      >
+      <div className="relative h-full w-full">
         {/* Logo lớn trên banner (trái) */}
         <Link
           href="/"
           aria-label="Về trang chủ"
-          className="absolute top-6 md:top-10 left-4 md:left-16 z-10 transition-all duration-300"
+          className="absolute top-6 md:top-10 left-4 md:left-16 z-10"
         >
           <Image
             src="/logo_memew.svg"
             alt="MEMEW logo"
             width={256}
             height={128}
-            className={`select-none transition-all duration-300 ${
-              isScrolled ? "w-32 md:w-40 h-auto" : "w-40 md:w-56 h-auto"
-            }`}
+            className="w-40 md:w-56 h-auto select-none"
             draggable={false}
             priority
           />
         </Link>
 
         {/* Topbar rộng rãi: Search + actions */}
-        <div
-          className={`absolute transition-all duration-300 ${
-            isScrolled ? "top-2 md:top-3" : "top-4 md:top-6"
-          } inset-x-0 z-10`}
-        >
+        <div className="absolute top-4 md:top-6 inset-x-0 z-10">
           <div className="mx-auto max-w-none px-4 md:px-6">
             <div className="flex items-center justify-between md:justify-end gap-3 md:gap-4">
               {/* Ô tìm kiếm lớn */}
@@ -217,19 +205,9 @@ export default function Header() {
         </div>
 
         {/* Navigation sản phẩm: Link + button, đồng nhất màu sắc theo theme */}
-        <section
-          className={`absolute inset-x-0 transition-all duration-300 ${
-            isScrolled ? "bottom-1 md:bottom-2" : "bottom-3 md:bottom-6"
-          } z-20`}
-        >
+        <section className="absolute bottom-3 md:bottom-6 inset-x-0 z-20">
           <section className="w-full px-4 md:px-10">
-            <div
-              className={`flex items-center md:justify-center gap-3 md:gap-6 lg:gap-8 md:pl-[260px] lg:pl-[350px] overflow-x-auto no-scrollbar [-ms-overflow-style:'none'] [scrollbar-width:'none'] transition-all duration-300 ${
-                isScrolled
-                  ? "md:pl-[200px] lg:pl-[280px]"
-                  : "md:pl-[260px] lg:pl-[350px]"
-              }`}
-            >
+            <div className="flex items-center md:justify-center gap-3 md:gap-6 lg:gap-8 md:pl-[260px] lg:pl-[350px] overflow-x-auto no-scrollbar [-ms-overflow-style:'none'] [scrollbar-width:'none']">
               {categories.map((label, idx) => (
                 <Button
                   asChild
