@@ -1,11 +1,18 @@
 import React from "react";
 import HomeCarousel from "@/components/home/home-carousel";
+import { getCarouselProducts } from "@/lib/data/products";
 
-export default function HomePage() {
+// Cache carousel products trong 5 phút
+export const revalidate = 300;
+
+export default async function HomePage() {
+  // Fetch data ở server - có thể cache ở CDN level
+  const products = await getCarouselProducts();
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Featured Products Carousel */}
-      <HomeCarousel />
+      <HomeCarousel products={products} />
 
       {/* Placeholder for other sections */}
       <div className="container mx-auto px-4 py-8">

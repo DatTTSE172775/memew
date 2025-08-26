@@ -73,3 +73,14 @@ export interface UpdateProductSizeDto {
   sizeName?: string;
   price?: number;
 }
+
+// Carousel Product interface - chỉ lấy các field cần thiết cho hiển thị
+export interface CarouselProduct {
+  id: number;
+  name: string;
+  description: string;
+  imageUrl: string;
+  category?: string;
+  isNew?: boolean;
+  price?: number; // Lấy từ productSizes nếu cần
+}
